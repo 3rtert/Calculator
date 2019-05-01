@@ -13,16 +13,33 @@ public class Operation {
 	 */
 	private int id=-1;
 	public static final int MAXID=5;
-	public static final char exponentiation='^';
-	public static final char roots='v';
-	public static final char multiplication='*';
-	public static final char division='/';
-	public static final char addition='+';
-	public static final char subtraction='-';
-	public static final char notInitialized=' ';
+	public static final char EXPONENTIATION='^';
+	public static final char ROOTS='v';
+	public static final char MULTIPLICATION='*';
+	public static final char DIVISION='/';
+	public static final char ADDITION='+';
+	public static final char SUBTRACTION='-';
+	public static final char NOTINITIALIZED=' ';
 
 	public Operation(int id) {
 		this.id = id;
+	}
+	
+	public Operation(char c) {
+		if(c==EXPONENTIATION)
+			id=0;
+		else if(c==ROOTS)
+			id=1;
+		else if(c==MULTIPLICATION)
+			id=2;
+		else if(c==DIVISION)
+			id=3;
+		else if(c==ADDITION)
+			id=4;
+		else if(c==SUBTRACTION)
+			id=5;
+		else
+			id=-1;
 	}
 	
 	public int getId() {
@@ -56,25 +73,29 @@ public class Operation {
 	public char toChar()
 	{
 		if(id==0) {
-			return exponentiation;
+			return EXPONENTIATION;
 		}
 		else if(id==1) {
-			return roots;
+			return ROOTS;
 		}
 		else if(id==2) {
-			return multiplication;
+			return MULTIPLICATION;
 		}
 		else if(id==3) {
-			return division;
+			return DIVISION;
 		}
 		else if(id==4) {
-			return addition;
+			return ADDITION;
 		}
 		else if(id==5) {
-			return subtraction;
+			return SUBTRACTION;
 		}
 		else {
-			return notInitialized;
+			return NOTINITIALIZED;
 		}
+	}
+	@Override
+	public String toString() {
+		return Character.toString(toChar());
 	}
 }
