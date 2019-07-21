@@ -49,24 +49,8 @@ public class Bracket {
 			values.add(new Bracket(brackets[brackets.length-1], map));
 		}
 	}
-	
-	public Bracket(List<Bracket> values, List<Operation> operations) {
-		this.values = values;
-		this.operations = operations;
-	}
 
-	
-	public List<Bracket> getValues() {
-		return values;
-	}
-
-
-	public List<Operation> getOperations() {
-		return operations;
-	}
-
-
-	public static Bracket getBracket(String str) {
+	protected static Bracket getBracket(String str) {
 		Map<Character,List<String>> map = new HashMap<>();
 		String pattern="\\([^()]*?\\)";
 		Pattern pat = Pattern.compile(pattern);
@@ -90,11 +74,11 @@ public class Bracket {
 		return newBracket;
 	}
 
-	public double getDoubleValue() {
+	protected double getDoubleValue() {
 		return val;
 	}
 
-	public double calculate() {
+	protected double calculate() {
 		if(changed && !operations.isEmpty()) {
 			values.stream().forEach(item->item.calculate());
 			List<Bracket> tempValues = new ArrayList<>(values);
@@ -115,7 +99,7 @@ public class Bracket {
 		return val;
 	}
 	
-	double doOperation(Bracket bracket, BinaryOperator<Double> o) {
+	private double doOperation(Bracket bracket, BinaryOperator<Double> o) {
 		return o.apply(this.val, bracket.val);
 	}
 	
